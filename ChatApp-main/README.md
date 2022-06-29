@@ -1,2 +1,0 @@
-# ChatApp
-Realtime Chat Application

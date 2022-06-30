@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Arima:wght@100&family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+.Message{
+    display: flex;
+    flex-direction: column; 
+}
+
+.message-top{
+    display: flex;
+    align-items: center;
+}
+.message-bottom{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    margin: 10px;
+}
+.message-img{ 
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+.message-text{
+    font-weight: 400;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background: rgb(226, 226, 226);
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
+    max-width: 300px;
+}
+.Message.own{
+    align-items: flex-end;
+}

@@ -58,6 +58,11 @@ hr{
 .online-heading{
     font-family: sans-serif;
     justify-content: center;
+    padding: 10px;
+    text-align: center;
+    color: rgb(0, 141, 21);
+    font-weight: bold;
+    background: rgb(238, 221, 185)
 }
 .chat-emoji{
     color: black;

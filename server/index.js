@@ -9,6 +9,7 @@ const cors = require("cors");
 const path = require("path");
 const conversationRoute = require("./Routes/conversation");
 const messageRoute = require("./Routes/message");
+const usersRoute = require("./Routes/users");
 
 
 
@@ -31,10 +32,11 @@ app.use(express.json());
 app.use(helmet({crossOriginResourcePolicy: false,}));
 app.use(morgan("common"));
 app.use(cors());
-
+app.use("/images",express.static(path.join(__dirname,"public/images")));
 
 
 //RESTful Routes
+app.use("/api/users",usersRoute);
 app.use("/api/conversation",conversationRoute);
 app.use("/api/message",messageRoute);
 

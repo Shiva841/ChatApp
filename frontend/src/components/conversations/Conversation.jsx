@@ -1,20 +1,33 @@
+import   Axios  from 'axios';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import "./conversation.css";
 
 export default function Conversation({conversation,currentUser}) {
-  const [user,setUser] = useState(null);
+  const [user,setUser] = useState("");
+
+  const pubfol = process.env.REACT_APP_PUBLIC_FOLDER;
 
   useEffect(()=>{
     const friendId = conversation.member.find((m)=> m !== currentUser._id);
-  },[conversation,currentUser._id]);
+
+    const getUser = async () =>{
+      try {
+        const res = await Axios.get("/users?userId="+friendId);
+        setUser(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getUser();
+  },[currentUser,conversation]);
 
   return (
     <div className='conversation'>
-      <img src="https://images.unsplash.com/photo-1594007759138-855170ec8dc0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1376&q=80" 
-        alt="" 
-        className="conversation-img" />
-      <span className="conversation-name">Shiva</span>
+      <img src={user.profilePicture? user.profilePicture:pubfol+"noUser2.jpg"}
+          alt="" 
+          className="conversation-img" />
+      <span className="conversation-name">{user.username}</span>
     </div>
   )
 }

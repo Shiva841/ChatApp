@@ -9,7 +9,7 @@ import { AuthContext } from "../context/AuthContext";
 import axios from "axios";
 
 export default function Messenger() {
-  const [conversation,setConversation] = useState([]);
+  const [conversations,setConversation] = useState([]);
   const {user} = useContext(AuthContext);
  
   useEffect(()=>{
@@ -33,7 +33,7 @@ export default function Messenger() {
             <div className="chat-menu-wrapper">
                 <input placeholder="search for friends" className="chat-menu-input" />
                 <hr />
-                {conversation.map((u)=>(
+                {conversations.map((u)=>(
                      <Conversation conversation={u} currentUser={user}/>
                 ))}
                

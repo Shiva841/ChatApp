@@ -10,6 +10,8 @@ import axios from "axios";
 
 export default function Messenger() {
   const [conversations,setConversation] = useState([]);
+  const [currentChat,setCurrentchat] = useState("");
+  const [messages,setMessages] = useState([]);
   const {user} = useContext(AuthContext);
  
   useEffect(()=>{
@@ -25,6 +27,19 @@ export default function Messenger() {
     getConversation();
   },[user._id]);
 
+ useEffect(()=>{
+    const getMessages = async () =>{
+        try {
+          const res = await axios.get("/message/"+currentChat._id);
+          setMessages(res.data);
+        } catch (error) {
+          console.log(error);
+        }
+    }
+    getMessages();
+ },[currentChat]);
+
+
   return (
     <div>
     <Topbar/>
@@ -34,23 +49,35 @@ export default function Messenger() {
                 <input placeholder="search for friends" className="chat-menu-input" />
                 <hr />
                 {conversations.map((u)=>(
-                     <Conversation conversation={u} currentUser={user}/>
+                  <div className="container" onClick={()=>setCurrentchat(u)}>
+                      <Conversation conversation={u} currentUser={user}/>
+                  </div>
+                    
                 ))}
                
             </div>
           </div>
           <div className="chat-box">
             <div className="chat-box-wrapper">
+              {
+                currentChat ?
+                <>
                 <div className="chat-box-top">
-                  <Message/>
-                  <Message own={true}/>
-                  <Message/>
+                  {
+                    messages.map((m)=>(
+                      <Message message={m} own={m.sender === user._id}/>
+                    ))
+                  }
+                  
                 </div>
                 <div className="chat-box-bottom">
                   <SentimentSatisfiedAltIcon className="chat-emoji"/>
                   <textarea placeholder="write something..." className="chat-bottom-input"></textarea>
                   <button className="chat-send-button">Send</button>
                 </div>
+                </>
+                : <span className="no-chat">Open a Conversation to start a Chat</span> 
+                }
             </div>
           </div>
           <div className="chat-online">

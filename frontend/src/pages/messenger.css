@@ -31,12 +31,13 @@ hr{
 .chat-box-wrapper{
     display: flex;
     flex-direction: column;
+    background: whitesmoke;
     justify-content: space-between;
 }
 .chat-box-top{
     height: 100%;
     overflow-y: scroll;
-    background:rgb(253, 241, 243);
+    background:rgb(255, 255, 255);
     border-radius: 10px;
 }
 .chat-box-bottom{
@@ -102,4 +103,14 @@ hr{
     font-weight: 400;
     font-size: 15px;
     transition: all 200ms ease-out;
+}
+.no-chat{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    color: rgb(180, 217, 253);
+    font-size: 50px;
+    font-weight:bold;
+    font-family: sans-serif;
+    cursor: default;
 }

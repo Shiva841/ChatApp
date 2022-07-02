@@ -12,8 +12,10 @@ export default function Messenger() {
   const [conversations,setConversation] = useState([]);
   const [currentChat,setCurrentchat] = useState("");
   const [messages,setMessages] = useState([]);
+  const [newMessage,setnewMessage] = useState("");
   const {user} = useContext(AuthContext);
- 
+  
+  
   useEffect(()=>{
     const getConversation = async () =>{
       try {
@@ -38,6 +40,24 @@ export default function Messenger() {
     }
     getMessages();
  },[currentChat]);
+
+ const handleSubmit = async (e)=>{
+  e.preventDefault();
+  const Newmessage ={
+      sender:user._id,
+      text:newMessage,
+      conversationId:currentChat._id,
+      
+  };
+  try {
+    const res = await axios.post("/message",Newmessage);
+    setMessages([...messages,res.data]);
+    setnewMessage("");
+  } catch (error) {
+    console.log(error);
+  }
+ };
+
 
 
   return (
@@ -72,8 +92,13 @@ export default function Messenger() {
                 </div>
                 <div className="chat-box-bottom">
                   <SentimentSatisfiedAltIcon className="chat-emoji"/>
-                  <textarea placeholder="write something..." className="chat-bottom-input"></textarea>
-                  <button className="chat-send-button">Send</button>
+                  <textarea 
+                    placeholder="write something..." 
+                    className="chat-bottom-input"
+                    onChange={(e)=>setnewMessage(e.target.value)}
+                    value={newMessage}
+                    />
+                  <button className="chat-send-button" onClick={handleSubmit}>Send</button>
                 </div>
                 </>
                 : <span className="no-chat">Open a Conversation to start a Chat</span> 

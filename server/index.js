@@ -12,10 +12,6 @@ const messageRoute = require("./Routes/message");
 const usersRoute = require("./Routes/users");
 
 
-
-
-
-
 dotenv.config();
 
 //mongodb configuration

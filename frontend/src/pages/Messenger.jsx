@@ -120,7 +120,7 @@ export default function Messenger() {
           <div className="chat-online">
             <div className="chat-online-wrapper">
                 <span className="online-heading">Active user</span>
-                 <ChatOnline/>
+                 <ChatOnline currentUser={user}/>
             </div>
           </div>
        </div>

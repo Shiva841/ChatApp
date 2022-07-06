@@ -37,11 +37,15 @@ hr{
 .chat-box-top{
     height: 100%;
     overflow-y: scroll;
-    background:rgb(255, 255, 255);
+    background:rgb(210, 230, 255);
     border-radius: 10px;
     direction: ltr;
     scrollbar-color: #d4aa70 #e4e4e4;
     scrollbar-width: thin;
+    /* background-image: url('https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'); */
+    background-size:100% 100%;
+    background-repeat: no-repeat;
+    background-position: 0% 0%;
 }
 .chat-box-top::-webkit-scrollbar{
     width: 5px;
